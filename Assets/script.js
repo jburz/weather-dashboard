@@ -1,13 +1,16 @@
 let cityName;
+let stateName;
+let zipCode;
 let cities = [];
 let currentLat;
 let currentLon;
+
 apiKey = '3677b7f1ed1a37d22f29ccb0277f664a';
 
 //function to return an ajax call from the current weather api based on a city input
 function getCurrentWeatherData(city) {
     //variable for URL to api request
-    const queryURL = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&appid=' + apiKey;
+    const queryURL = 'https://api.openweathermap.org/data/2.5/weather?zip=' + zipCode + '&appid=' + apiKey;
 
     //ajax call with then promise
     $.ajax({
@@ -52,9 +55,16 @@ function retrieveFromLocalStorage() {
 $('#submitBtn').on('click', function (event) {
     //prevent form from submitting
     event.preventDefault();
-    //store input value in variable
+    //store input values in variables
     cityName = $('#cityName').val();
-    // run getCurrentWeatherData using cityName
-    getCurrentWeatherData(cityName);
-    // sendToLocalStorage(cityName);
+    stateName = $('#stateName').val();
+    zipCode = $('#zipCode').val();
+    //checks that all inputs are filled in
+    if (zipCode === "") {
+        alert('Zip Code is required');
+    } else {
+        // run getCurrentWeatherData using cityName
+        getCurrentWeatherData(cityName);
+        // sendToLocalStorage(cityName);
+    }
 });
