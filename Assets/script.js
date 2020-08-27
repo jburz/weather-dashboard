@@ -59,6 +59,10 @@ $('#submitBtn').on('click', function (event) {
     cityName = $('#cityName').val();
     stateName = $('#stateName').val();
     zipCode = $('#zipCode').val();
+    //clear inputs
+    $('#cityName').val('');
+    $('#stateName').val('');
+    $('#zipCode').val('');
     //checks that all inputs are filled in
     if (zipCode === "") {
         alert('Zip Code is required');
