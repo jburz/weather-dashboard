@@ -10,7 +10,7 @@ apiKey = '3677b7f1ed1a37d22f29ccb0277f664a';
 //function to return an ajax call from the current weather api based on a city input
 function getCurrentWeatherData(city) {
     //variable for URL to api request
-    const queryURL = 'https://api.openweathermap.org/data/2.5/weather?zip=' + zipCode + '&appid=' + apiKey;
+    const queryURL = 'https://api.openweathermap.org/data/2.5/weather?zip=' + zipCode + '&units=imperial&appid=' + apiKey;
 
     //ajax call with then promise
     $.ajax({
@@ -27,7 +27,7 @@ function getCurrentWeatherData(city) {
 //function to return an ajax call from one call api based on latitude and longitude inputs
 function getFiveDayForecast(lat, long) {
     //variable for URL to api request
-    const queryURL = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + long + '&exclude=current,minutely,hourly&appid=' + apiKey;
+    const queryURL = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + long + '&exclude=minutely,hourly&units=imperial&appid=' + apiKey;
     //ajax call with then promise
     $.ajax({
         url: queryURL,
@@ -59,14 +59,16 @@ $('#submitBtn').on('click', function (event) {
     cityName = $('#cityName').val();
     stateName = $('#stateName').val();
     zipCode = $('#zipCode').val();
-    //clear inputs
-    $('#cityName').val('');
-    $('#stateName').val('');
-    $('#zipCode').val('');
     //checks that all inputs are filled in
-    if (zipCode === "") {
+    if (cityName === "" || cityName === undefined) {
+        alert('City is required');
+    } else if (zipCode === "" || zipCode === undefined) {
         alert('Zip Code is required');
     } else {
+        //clear inputs
+        $('#cityName').val('');
+        $('#stateName').val('');
+        $('#zipCode').val('');
         // run getCurrentWeatherData using cityName
         getCurrentWeatherData(cityName);
         // sendToLocalStorage(cityName);
