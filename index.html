@@ -14,6 +14,8 @@
         <div class="row">
             <h1 class="text-warning ml-3 mt-3">FIVE DAY FORECAST</h1>
         </div>
+
+        <!-- Sidebar with form control for city search and history -->
         <div class="row ml-3">
             <div class="col-sm-3">
                 <div>
@@ -43,21 +45,24 @@
                             <h5>Search History</h5>
                         </div>
                         <ul class="list-group d-flex">
-                            <li class="list-group-item pt-2 pb-2 collapse" id="history1"></li>
-                            <li class="list-group-item pt-2 pb-2 collapse" id="history2"></li>
-                            <li class="list-group-item pt-2 pb-2 collapse" id="history3"></li>
-                            <li class="list-group-item pt-2 pb-2 collapse" id="history4"></li>
-                            <li class="list-group-item pt-2 pb-2 collapse" id="history5"></li>
-                            <li class="list-group-item pt-2 pb-2 collapse" id="history6"></li>
+                            <li class="list-group-item list-group-item-action pt-2 pb-2 collapse" id="history0"></li>
+                            <li class="list-group-item list-group-item-action pt-2 pb-2 collapse" id="history1"></li>
+                            <li class="list-group-item list-group-item-action pt-2 pb-2 collapse" id="history2"></li>
+                            <li class="list-group-item list-group-item-action pt-2 pb-2 collapse" id="history3"></li>
+                            <li class="list-group-item list-group-item-action pt-2 pb-2 collapse" id="history4"></li>
+                            <li class="list-group-item list-group-item-action pt-2 pb-2 collapse" id="history5"></li>
                         </ul>
                     </div>
                 </div>
             </div>
+
+            <!-- Main card with city, date, weather icon temp, humidity, wind speed, uv index -->
             <div class="col-sm-9 bg-warning">
                 <div class="row m-3">
                     <div class="card d-flex flex-fill">
                         <div class="card-body align-items-top bg-white">
-                            <h3 id="currentCity" class="mb-3">City: </h3>
+                            <h3 id="currentCity" class="mb-3 d-inline">City: </h3>
+                            <img src="" alt="current weather icon" id="currentIcon">
                             <p id="currentTemp">Temperature: </p>
                             <p id="currentHumidity">Humidity: </p>
                             <p id="currentWind">Wind Speed: </p>
@@ -65,62 +70,66 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- 5 day forecast cards with date, weather icon, temp and humidity-->
                 <div class="row m-3">
                     <h3>5-Day Forecast:</h3>
                 </div>
                 <div class="row d-flex m-3">
                     <div class="card flex-grow-1">
-                        <div class="card-body bg-white">
-                            <p>Date</p>
-                            <p>Weather Icon</p>
-                            <p>Temp: </p>
-                            <p>Humidity: </p>
+                        <div class="card-body bg-white" id="forecast0">
+                            <p id="date1">Date</p>
+                            <img alt="weather icon" id="icon1"></img>
+                            <p id="minTemp1">Min: </p>
+                            <p id="maxTemp1">Max: </p>
+                            <p id="humid1">Humidity: </p>
                         </div>
                     </div>
                     <div class="card flex-grow-1">
-                        <div class="card-body bg-white">
-                            <p>Date</p>
-                            <p>Weather Icon</p>
-                            <p>Temp: </p>
-                            <p>Humidity: </p>
+                        <div class="card-body bg-white" id="forecast0">
+                            <p id="date2">Date</p>
+                            <img alt="weather icon" id="icon2"></img>
+                            <p id="minTemp2">Min: </p>
+                            <p id="maxTemp2">Max: </p>
+                            <p id="humid2">Humidity: </p>
                         </div>
                     </div>
                     <div class="card flex-grow-1">
-                        <div class="card-body bg-white">
-                            <p>Date</p>
-                            <p>Weather Icon</p>
-                            <p>Temp: </p>
-                            <p>Humidity: </p>
+                        <div class="card-body bg-white" id="forecast0">
+                            <p id="date3">Date</p>
+                            <img alt="weather icon" id="icon3"></img>
+                            <p id="minTemp3">Min: </p>
+                            <p id="maxTemp3">Max: </p>
+                            <p id="humid3">Humidity: </p>
                         </div>
                     </div>
                     <div class="card flex-grow-1">
-                        <div class="card-body bg-white">
-                            <p>Date</p>
-                            <p>Weather Icon</p>
-                            <p>Temp: </p>
-                            <p>Humidity: </p>
+                        <div class="card-body bg-white" id="forecast0">
+                            <p id="date4">Date</p>
+                            <img alt="weather icon" id="icon4"></img>
+                            <p id="minTemp4">Min: </p>
+                            <p id="maxTemp4">Max: </p>
+                            <p id="humid4">Humidity: </p>
                         </div>
                     </div>
                     <div class="card flex-grow-1">
-                        <div class="card-body bg-white">
-                            <p>Date</p>
-                            <p>Weather Icon</p>
-                            <p>Temp: </p>
-                            <p>Humidity: </p>
+                        <div class="card-body bg-white" id="forecast0">
+                            <p id="date5">Date</p>
+                            <img alt="weather icon" id="icon5"></img>
+                            <p id="minTemp5">Min: </p>
+                            <p id="maxTemp5">Max: </p>
+                            <p id="humid5">Humidity: </p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    </div>
+    </div>
 
-    <!-- sidebar with form control for city search and history -->
 
-    <!-- Main card with city, date, weather icon
-            
-            temp, humidity, wind speed, uv index -->
 
-    <!-- 5 day forecast, current day + 4 days ahead-->
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"
         integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
