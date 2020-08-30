@@ -12,7 +12,7 @@
 <body>
     <div class="container-fluid bg-light border border-warning">
         <div class="row">
-            <h1 class="text-warning ml-3 mt-3">FIVE DAY FORECAST</h1>
+            <h1 class="text-warning ml-3 mt-3" id="header">FIVE DAY FORECAST</h1>
         </div>
 
         <!-- Sidebar with form control for city search and history -->
@@ -66,7 +66,8 @@
                             <p id="currentTemp">Temperature: </p>
                             <p id="currentHumidity">Humidity: </p>
                             <p id="currentWind">Wind Speed: </p>
-                            <p id="currentUV">UV Index: </p>
+                            <p class="d-inline">UV Index: </p>
+                            <div class="d-inline" id="currentUV">test</div>
                         </div>
                     </div>
                 </div>
@@ -138,6 +139,9 @@
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"
+        integrity="sha512-rmZcZsyhe0/MAjquhTgiUcb4d9knaFc7b5xAfju483gbEXTkeJRUMIPk6s3ySZMYUHEcjKbjLjyddGWMrNEvZg=="
         crossorigin="anonymous"></script>
     <script src="./Assets/script.js"></script>
 </body>
