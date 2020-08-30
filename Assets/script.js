@@ -21,6 +21,10 @@ function getCurrentWeatherData(city) {
         currentLat = response.coord.lat;
         currentLon = response.coord.lon;
         getFiveDayForecast(currentLat, currentLon);
+        cityName = response.name;
+        $('#currentCity').text('City: ' + cityName);
+        sendToLocalStorage(cityName, zipCode);
+        addToSearchHistory(cityName);
     });
 }
 
@@ -34,6 +38,10 @@ function getFiveDayForecast(lat, long) {
         method: "GET"
     }).then(function (response) {
         console.log(response);
+        $('#currentTemp').text('Temperature: ' + response.current.temp + (' ') + String.fromCharCode(176) + 'F');
+        $('#currentHumidity').text('Humidity: ' + response.current.humidity + ' %');
+        $('#currentWind').text('Wind Speed: ' + response.current.wind_speed + ' MPH');
+        $('#currentUV').text('UV Index: ' + response.current.uvi);
     });
 }
 
@@ -43,12 +51,20 @@ function getFiveDayForecast(lat, long) {
 //click listener on each city search
 
 //function to store form input to local storage
-function sendToLocalStorage(city) {
+function sendToLocalStorage(city, zip) {
     localStorage.setItem('cityName', city);
+    localStorage.setItem('zipCode', zip);
 }
 
 function retrieveFromLocalStorage() {
     localStorage.getItem('cityName');
+}
+
+function addToSearchHistory(city) {
+    $('#history1').text(city);
+    $('#history1').removeClass('collapse');
+    $('#history1').addClass('collapse.show');
+    console.log('hit');
 }
 
 // click listener on search button
@@ -65,12 +81,11 @@ $('#submitBtn').on('click', function (event) {
     } else if (zipCode === "" || zipCode === undefined) {
         alert('Zip Code is required');
     } else {
-        //clear inputs
-        $('#cityName').val('');
-        $('#stateName').val('');
-        $('#zipCode').val('');
-        // run getCurrentWeatherData using cityName
-        getCurrentWeatherData(cityName);
-        // sendToLocalStorage(cityName);
+    //clear inputs
+    $('#cityName').val('');
+    $('#stateName').val('');
+    $('#zipCode').val('');
+    // run getCurrentWeatherData using cityName
+    getCurrentWeatherData(cityName);
     }
 });
