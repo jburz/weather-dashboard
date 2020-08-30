@@ -10,7 +10,9 @@ apiKey = '3677b7f1ed1a37d22f29ccb0277f664a';
 
 displayDate();
 retrieveFromLocalStorage();
-addToSearchHistory(searchHistory);
+if(searchHistory !== null) {
+    addToSearchHistory(searchHistory);
+}
 
 //function to return an ajax call from the current weather api based on a city input
 function getCurrentWeatherData(city) {
@@ -22,7 +24,6 @@ function getCurrentWeatherData(city) {
         url: queryURL,
         method: "GET"
     }).then(function (response) {
-        console.log(response);
         currentLat = response.coord.lat;
         currentLon = response.coord.lon;
         getFiveDayForecast(currentLat, currentLon);
@@ -44,61 +45,53 @@ function getFiveDayForecast(lat, long) {
         method: "GET"
     }).then(function (response) {
         let uvi = response.current.uvi;
-        console.log(response);
         $('#currentTemp').text('Temperature: ' + response.current.temp + (' ') + String.fromCharCode(176) + 'F');
         $('#currentHumidity').text('Humidity: ' + response.current.humidity + '%');
         $('#currentWind').text('Wind Speed: ' + response.current.wind_speed + ' MPH');
         $('#currentUV').addClass('border rounded p-1').text(response.current.uvi);
         if (uvi < 3) {
-            console.log('green');
             $('#currentUV').addClass('bg-success');
         }
         else if (uvi >= 3 & uvi < 6) {
-            console.log('yellow');
             $('#currentUV').addClass('bg-warning');
         }
         else if (uvi >= 6 & uvi < 8) {
-            console.log('orange');
             $('#currentUV').css('background-color', '#FF5E13');
         }
         else if (uvi >= 8 & uvi < 11) {
-            console.log('red');
             $('#currentUV').addClass('bg-danger');
         }
         else if (uvi >= 11) {
-            console.log('purple');
             $('#currentUV').css('background-color', '#800080');
         }
         displayFiveDayForecast(response);
     });
 }
 
-//click listener on each city search
 
 //function to store form input to local storage
 function sendToLocalStorage(city, zip) {
     let citySearch = { city: city, zip: zip };
     searchHistory.unshift(citySearch);
-    console.log('hit');
-    console.log(searchHistory);
-    if (searchHistory.length > 6) {
+    if (searchHistory.length > 8) {
         searchHistory.pop();
     }
     localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
 }
 
 function retrieveFromLocalStorage() {
-    searchHistory = JSON.parse(localStorage.getItem('searchHistory'));
-    console.log(searchHistory);
+    if (localStorage.getItem('searchHistory') !== null) {
+        searchHistory = JSON.parse(localStorage.getItem('searchHistory'));
+    }
 }
 
 // function to store form input to search history; display search history
 function addToSearchHistory(searchHistory) {
     for (let i = 0; i < searchHistory.length; i++) {
         $('#history' + i).text(searchHistory[i].city);
-        console.log(searchHistory[i].city);
         $('#history' + i).removeClass('collapse');
         $('#history' + i).addClass('collapse.show');
+        $('#history' + i).data('zipCode', zipCode);
     }
 }
 
@@ -137,4 +130,10 @@ $('#submitBtn').on('click', function (event) {
         // run getCurrentWeatherData using cityName
         getCurrentWeatherData(cityName);
     }
+});
+
+//click listener on each city search button
+$('.list-group').on('click', function(event) {
+    console.log(event);
+    console.dir(event.target);
 });
